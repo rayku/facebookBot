@@ -9,7 +9,7 @@ end
 get '/bot_enabled' do
   redirect to ('/not_ok') unless (request.referer =~ /facebook.com/)
   @enabled = params[:action] == '1'
-  Resque.enqueue(FriendshipManager)
+  Resque.enqueue(FriendshipManager) if @enabled
   erb :bot_enabled
 end
 
