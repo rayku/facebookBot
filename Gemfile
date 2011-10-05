@@ -1,6 +1,9 @@
 source :rubygems
 
 gem 'sinatra'
+gem 'resque'
+gem 'rack'
+gem 'mechanize'
 
 group :test do
 	gem 'rspec'
