@@ -17,7 +17,6 @@ describe "RaykuBot WebServer" do
   end
   
   describe "enabling the bot" do
-
     describe "requests nome coming from facebook" do
       before(:each) do
         get '/bot_enabled', {}, 'Referer' => 'not_facebook'
@@ -34,24 +33,28 @@ describe "RaykuBot WebServer" do
     end
     
     describe "request coming from facebook" do      
-      it "should tell the user about the friendship" do
-        get '/bot_enabled', {:action => '1'}, {'HTTP_REFERER' => 'http://www.facebook.com'}
-        last_response.body.should =~ /Thank you for adding RaykuBot as your friend in facebook. You will start receiving notifications soon./
+      describe "the user adds raykuBot as friend" do
+        it "should tell the user about the friendship" do
+          get '/bot_enabled', {:action => '1'}, {'HTTP_REFERER' => 'http://www.facebook.com'}
+          last_response.body.should =~ /Thank you for adding RaykuBot as your friend in facebook. You will start receiving notifications soon./
+        end
+        
+        it "should tell the friendship manager to accept the friendship" do
+          Resque.should_receive(:enqueue).with(FriendshipManager)
+          get '/bot_enabled', {:action => '1'}, {'HTTP_REFERER' => 'http://www.facebook.com'}
+        end
       end
       
-      it "should tell the user about the friendship not happening" do
-        get '/bot_enabled', {:action => '0'}, {'HTTP_REFERER' => 'http://www.facebook.com'}
-        last_response.body.should =~ /You gave up on adding the RaykuBot as your friend. You will not receive notifications unless you add the bot as your friend./
-      end
-      
-      it "should tell the friendship manager to accept the friendship when the user adds raykuBot as a friend" do
-        Resque.should_receive(:enqueue).with(FriendshipManager)
-        get '/bot_enabled', {:action => '1'}, {'HTTP_REFERER' => 'http://www.facebook.com'}
-      end
-      
-      it "should not tell the friendship manager to accept the friendship when the user doesnt add raykuBot as a friend" do
-        Resque.should_not_receive(:enqueue)
-        get '/bot_enabled', {:action => '0'}, {'HTTP_REFERER' => 'http://www.facebook.com'}
+      describe "the user doesn't add raykuBot as friend" do
+        it "should tell the user about the friendship not happening" do
+          get '/bot_enabled', {:action => '0'}, {'HTTP_REFERER' => 'http://www.facebook.com'}
+          last_response.body.should =~ /You gave up on adding the RaykuBot as your friend. You will not receive notifications unless you add the bot as your friend./
+        end
+
+        it "should not tell the friendship manager to accept the friendship" do
+          Resque.should_not_receive(:enqueue)
+          get '/bot_enabled', {:action => '0'}, {'HTTP_REFERER' => 'http://www.facebook.com'}
+        end
       end
     end
   end
