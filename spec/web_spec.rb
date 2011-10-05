@@ -7,6 +7,10 @@ describe "RaykuBot WebServer" do
     @app ||= Sinatra::Application
   end
 
+  before(:each) do
+    Resque.stub(:enqueue)
+  end
+
   it "should respond to /" do
     get '/'
     last_response.should be_ok
@@ -38,6 +42,11 @@ describe "RaykuBot WebServer" do
       it "should tell the user about the friendship not happening" do
         get '/bot_enabled', {:action => '0'}, {'HTTP_REFERER' => 'http://www.facebook.com'}
         last_response.body.should =~ /You gave up on adding the RaykuBot as your friend. You will not receive notifications unless you add the bot as your friend./
+      end
+      
+      it "should tell the friendship manager to accept the friendship" do
+        Resque.should_receive(:enqueue).with(FriendshipManager)
+        get '/bot_enabled', {:action => '1'}, {'HTTP_REFERER' => 'http://www.facebook.com'}
       end
     end
   end
