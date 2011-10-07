@@ -1,7 +1,6 @@
 require 'rubygems'
 require 'sinatra'
 require 'resque'
-require 'mini_fb'
 require './friendship_manager'
 require './rayku_bot'
 
@@ -26,5 +25,5 @@ get '/tutor' do
 end
 
 post '/tutor/:tutor/message' do
-  RaykuBot.deliver
+  RaykuBot.deliver(params[:tutor], params[:message])
 end

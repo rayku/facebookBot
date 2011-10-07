@@ -97,11 +97,11 @@ describe "RaykuBot WebServer" do
       last_response.should_not be_ok
     end
     
-    context "delegating the delivery to the bot" do
-      it "delegates to the raykubot" do
-        RaykuBot.should_receive(:deliver)
-        post '/tutor/123/message'
-      end
+    it "delegates to the raykubot" do
+      message = 'the message I want to send'
+      the_tutor = 'some_user_id'
+      RaykuBot.should_receive(:deliver).with(the_tutor, message)
+      post "/tutor/#{the_tutor}/message",  { :message => message }
     end
   end
 end
