@@ -6,6 +6,7 @@ require './lib/friendship_manager'
 require './lib/friendship_bot'
 
 get '/' do
+  @appid ||= YAML.load_file('configs.yml')[:facebook][:appid]
   erb :index
 end
 

@@ -1,7 +1,9 @@
 require 'rubygems'
+require 'yaml'
 require 'xmpp4r-simple'
 
-jabber = Jabber::Simple.new 'raykubot@chat.facebook.com', 'bghtyu123'
+credentials = YAML.load_file('configs.yml')[:facebook]
+jabber = Jabber::Simple.new credentials[:username], credentials[:password]
 
 loop do  
   begin

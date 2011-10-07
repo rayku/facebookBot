@@ -5,7 +5,6 @@ gem 'resque'
 gem 'rack'
 gem 'mechanize'
 gem 'json'
-gem 'system_timer'
 gem 'mini_fb'
 gem 'xmpp4r-simple'
 
