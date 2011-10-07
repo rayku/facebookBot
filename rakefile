@@ -1,3 +1,2 @@
-require './web'
-require './friendship_manager'
+require './lib/friendship_manager'
 require 'resque/tasks'
