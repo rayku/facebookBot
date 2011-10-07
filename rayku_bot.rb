@@ -1,3 +1,6 @@
+require 'mini_fb'
+require 'xmpp4r-simple'
+
 class RaykuBot
   
   def self.tutors
@@ -6,8 +9,8 @@ class RaykuBot
     MiniFB.fql(access_token, online_friends_query)
   end
   
-  def self.deliver
-    
+  def self.deliver(to, message)
+    @jabber ||= Jabber::Simple.new('raykubot@chat.facebook.com', 'bghtyu123')
+    @jabber.deliver("-#{to}@chat.facebook.com", message)
   end
-
 end
