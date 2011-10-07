@@ -1,4 +1,4 @@
-require './friendship_bot'
+require './lib/friendship_bot'
 
 class FriendshipManager
   @queue = :accept_friendships
