@@ -8,6 +8,8 @@ gem 'blather'
 gem 'json'
 gem 'system_timer'
 gem 'mini_fb'
+gem 'xmpp4r-simple'
+
 
 group :test do
 	gem 'rspec'
@@ -18,4 +20,5 @@ group :development do
 	gem 'guard-rspec'
 	gem 'growl'
 	gem 'growl_notify'
+	gem 'shotgun'
 end
