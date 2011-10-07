@@ -1,6 +1,4 @@
 require File.join(File.dirname(__FILE__), '..', 'web.rb')
-require File.join(File.dirname(__FILE__), '..', 'friendship_manager.rb')
-require File.join(File.dirname(__FILE__), '..', 'rayku_bot.rb')
 
 require 'sinatra'
 require 'rack/test'

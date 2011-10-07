@@ -1,8 +1,9 @@
 require 'rubygems'
 require 'sinatra'
 require 'resque'
-require './friendship_manager'
-require './rayku_bot'
+require './lib/rayku_bot'
+require './lib/friendship_manager'
+require './lib/friendship_bot'
 
 get '/' do
   erb :index
