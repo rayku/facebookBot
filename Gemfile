@@ -4,6 +4,10 @@ gem 'sinatra'
 gem 'resque'
 gem 'rack'
 gem 'mechanize'
+gem 'blather'
+gem 'json'
+gem 'system_timer'
+gem 'mini_fb'
 
 group :test do
 	gem 'rspec'
