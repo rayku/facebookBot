@@ -8,7 +8,7 @@ class RaykuBot
   
   def self.tutors
     online_friends_query = "SELECT uid, name, pic_square FROM user WHERE uid IN (SELECT uid2 FROM friend WHERE uid1 = me()) AND online_presence != 'offline'"
-    MiniFB.fql(@credentials[:access_token], online_friends_query)
+    MiniFB.fql(@credentials[:accesstoken], online_friends_query)
   end
   
   def self.deliver(to, message)
