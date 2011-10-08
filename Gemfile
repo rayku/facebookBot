@@ -7,6 +7,7 @@ gem 'mechanize'
 gem 'json'
 gem 'mini_fb'
 gem 'xmpp4r-simple'
+gem 'rake'
 
 
 group :test do
