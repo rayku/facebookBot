@@ -29,6 +29,7 @@ GEM
       rack
     rack-test (0.6.1)
       rack (>= 1.0)
+    rake (0.9.2)
     rb-appscript (0.6.1)
     redis (2.2.2)
     redis-namespace (1.0.3)
@@ -76,6 +77,7 @@ DEPENDENCIES
   mini_fb
   rack
   rack-test
+  rake
   resque
   rspec
   shotgun
