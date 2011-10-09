@@ -6,8 +6,9 @@ class FriendshipBot
   def accept_friends username, password
     @agent = Mechanize.new
     requests_page = login(username, password)
-    
-    friendship_request = requests_page.forms_with(:action => '/ajax/reqs.php').each do |request|
+    friendship_requests = requests_page.forms_with(:action => '/ajax/reqs.php')
+
+    friendship_requests.each do |request|
       request.click_button
     end
   end
