@@ -3,7 +3,7 @@ require 'yaml'
 require 'xmpp4r-simple'
 
 credentials = YAML.load_file('configs.yml')[:facebook]
-jabber = Jabber::Simple.new credentials[:username], credentials[:password]
+jabber = Jabber::Simple.new credentials[:usernamechat], credentials[:password]
 
 loop do  
   begin

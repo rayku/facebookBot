@@ -12,7 +12,7 @@ class RaykuBot
   end
   
   def self.deliver(to, message)
-    @jabber ||= Jabber::Simple.new(@credentials[:username], @credentials[:password])
+    @jabber ||= Jabber::Simple.new(@credentials[:usernamechat], @credentials[:password])
     @jabber.deliver("-#{to}@chat.facebook.com", message)
   end
 end
