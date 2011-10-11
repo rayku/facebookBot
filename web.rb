@@ -1,15 +1,15 @@
 require 'rubygems'
 require 'sinatra'
+require 'configs/facebook'
 require 'resque'
 require './lib/rayku_bot'
 require './lib/friendship_manager'
 require './lib/friendship_bot'
 
 
-@@app_id = YAML.load_file('configs.yml')[:facebook][:appid]
 
 get '/' do
-  @appid = @@app_id
+  @appid = Facebook::Config::APP_ID
   erb :index
 end
 
