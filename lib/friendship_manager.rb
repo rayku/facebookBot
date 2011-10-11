@@ -1,13 +1,13 @@
 require 'rubygems'
-require 'yaml'
+require './configs/facebook.rb'
 require './lib/friendship_bot'
 
 class FriendshipManager
   @queue = :accept_friendships
-  @credentials = YAML.load_file('configs.yml')[:facebook]
-  
+  @credentials = Facebook::Config
+
   def self.perform
     bot = FriendshipBot.new
-    bot.accept_friends(@credentials[:username], @credentials[:password])
+    bot.accept_friends @credentials::USERNAME[:login], @credentials::PASSWORD
   end
 end

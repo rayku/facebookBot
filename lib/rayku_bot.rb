@@ -1,18 +1,18 @@
 require 'mini_fb'
-require 'yaml'
+require './configs/facebook'
 require 'xmpp4r-simple'
 
 class RaykuBot
-  
-  @credentials = YAML.load_file('configs.yml')[:facebook]
-  
+
+  @credentials = Facebook::Config
+
   def self.tutors
     online_friends_query = "SELECT uid, name, pic_square FROM user WHERE uid IN (SELECT uid2 FROM friend WHERE uid1 = me()) AND online_presence != 'offline'"
-    MiniFB.fql(@credentials[:accesstoken], online_friends_query)
+    MiniFB.fql(@credentials::ACCESS_TOKEN, online_friends_query)
   end
-  
+
   def self.deliver(to, message)
-    @jabber ||= Jabber::Simple.new(@credentials[:usernamechat], @credentials[:password])
+    @jabber ||= Jabber::Simple.new(@credentials::USERNAME[:chat], @credentials::PASSWORD)
     @jabber.deliver("-#{to}@chat.facebook.com", message)
   end
 end
