@@ -1,11 +1,11 @@
 require 'rubygems'
-require 'yaml'
 require 'xmpp4r-simple'
+require './configs/facebook'
 
-credentials = YAML.load_file('configs.yml')[:facebook]
-jabber = Jabber::Simple.new credentials[:usernamechat], credentials[:password]
+credentials = Facebook::Config
+jabber = Jabber::Simple.new credentials::USERNAME[:chat], credentials::PASSWORD
 
-loop do  
+loop do
   begin
     jabber.received_messages do |msg|
       jid = msg.from.strip.to_s
