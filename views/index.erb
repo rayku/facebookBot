@@ -7,6 +7,6 @@
     It is really simple. All you need to do is add RaykuBot as your friend in facebook. <br />
     <br />
 
-    <a href="http://www.facebook.com/dialog/friends/?id=raykubot&app_id=<%=@appid%>&redirect_uri=http://rayku-local.com:9292/bot_enabled" >Enable RaykuBot</a>
+    <a href="http://www.facebook.com/dialog/friends/?id=raykubot&app_id=<%=@appid%>&redirect_uri=<%=request.scheme%>://<%=request.host%>:<%=request.port%>/bot_enabled" >Enable RaykuBot</a>
   </body>
 </html>

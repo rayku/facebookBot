@@ -6,8 +6,6 @@ require './lib/rayku_bot'
 require './lib/friendship_manager'
 require './lib/friendship_bot'
 
-
-
 get '/' do
   @appid = Facebook::Config::APP_ID
   erb :index
