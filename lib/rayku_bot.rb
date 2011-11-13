@@ -7,7 +7,7 @@ class RaykuBot
   @credentials = Facebook::Config
 
   def self.tutors
-    online_friends_query = "SELECT uid, name, pic_square FROM user WHERE uid IN (SELECT uid2 FROM friend WHERE uid1 = me()) AND online_presence != 'offline'"
+    online_friends_query = "SELECT uid, username, email, name, pic_square FROM user WHERE uid IN (SELECT uid2 FROM friend WHERE uid1 = me()) AND online_presence != 'offline'"
     MiniFB.fql(@credentials::ACCESS_TOKEN, online_friends_query)
   end
 

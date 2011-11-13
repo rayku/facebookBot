@@ -10,7 +10,7 @@ describe 'RaykuBot' do
 
     it "should send the correct access_token and the correct query" do
       credentials = Facebook::Config
-      query = "SELECT uid, name, pic_square FROM user WHERE uid IN (SELECT uid2 FROM friend WHERE uid1 = me()) AND online_presence != 'offline'"
+      query = "SELECT uid, username, email, name, pic_square FROM user WHERE uid IN (SELECT uid2 FROM friend WHERE uid1 = me()) AND online_presence != 'offline'"
       MiniFB.should_receive(:fql).with(credentials::ACCESS_TOKEN, query)
       RaykuBot.tutors
     end
