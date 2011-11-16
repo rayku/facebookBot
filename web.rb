@@ -24,7 +24,10 @@ end
 
 get '/tutor' do
   content_type :json
-  RaykuBot.tutors.to_json
+  RaykuBot.tutors.map do |tutor|
+    tutor[:uid] = tutor[:uid].to_s
+    tutor
+  end.to_json
 end
 
 post '/tutor/:tutor/message' do
