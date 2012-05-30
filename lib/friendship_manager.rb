@@ -1,5 +1,5 @@
 require 'rubygems'
-require './configs/facebook.rb'
+require './configs/facebook'
 require './lib/friendship_bot'
 
 class FriendshipManager

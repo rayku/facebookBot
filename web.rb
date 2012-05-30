@@ -1,6 +1,6 @@
 require 'rubygems'
 require 'sinatra'
-require 'configs/facebook'
+require './configs/facebook'
 require 'resque'
 require './lib/rayku_bot'
 require './lib/friendship_manager'
