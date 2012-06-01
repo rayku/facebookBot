@@ -9,7 +9,7 @@ require './lib/friendship_bot'
 # send job to queue
 get '/queue_friendship_worker' do
   Resque.enqueue(FriendshipManager)
-  erb :bot_enabled
+  return 'OK'
 end
 
 # list of all tutors connected through FB to RaykuBot user
