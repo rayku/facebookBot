@@ -6,20 +6,13 @@ require './lib/rayku_bot'
 require './lib/friendship_manager'
 require './lib/friendship_bot'
 
-get '/' do
-  @appid = Facebook::Config::APP_ID
-  erb :index
-end
-
+# send job to queue
 get '/queue_friendship_worker' do
   Resque.enqueue(FriendshipManager)
   erb :bot_enabled
 end
 
-get '/not_ok' do
-  erb :not_ok
-end
-
+# list of all tutors connected through FB to RaykuBot user
 get '/tutor' do
   content_type :json
   RaykuBot.tutors.map do |tutor|
@@ -28,6 +21,7 @@ get '/tutor' do
   end.to_json
 end
 
+# sends a message to given user through FB chat
 post '/tutor/:tutor/message' do
   RaykuBot.deliver(params[:tutor], params[:message])
 end
